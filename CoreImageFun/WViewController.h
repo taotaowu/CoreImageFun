@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UISlider *amountSlider;
 - (IBAction)amoutSliderValueChanged:(id)sender;
 - (IBAction)loadPhoto:(id)sender;
+- (IBAction)savePhoto:(id)sender;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "WViewController.h"
+#import  <AssetsLibrary/AssetsLibrary.h>
 
 @interface WViewController ()
 
@@ -60,7 +61,7 @@
     self.imageView.image = newImage;
     CGImageRelease(imageRef);
 }
-
+#pragma mark actions
 - (IBAction)loadPhoto:(id)sender
 {
     UIImagePickerController *imagePickControl = [[UIImagePickerController alloc] init];
@@ -68,6 +69,19 @@
     [self presentViewController:imagePickControl animated:YES completion:nil];
 }
 
+- (IBAction)savePhoto:(id)sender
+{
+    CIImage *savePhoto = [filter outputImage];
+    CIContext *softWareContext = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer:@(YES)}];
+    CGImageRef saveImageRef = [softWareContext createCGImage:savePhoto fromRect:[savePhoto extent]];
+    ALAssetsLibrary *assetLibrary = [[ALAssetsLibrary alloc] init];
+    [assetLibrary writeImageToSavedPhotosAlbum:saveImageRef metadata:[savePhoto properties] completionBlock:^(NSURL *assetURL, NSError *error) {
+        CGImageRelease(saveImageRef);
+    }];
+    
+}
+
+#pragma mark protocol
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:nil];
