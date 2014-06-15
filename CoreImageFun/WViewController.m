@@ -42,7 +42,22 @@
     self.imageView.image = newImage;
     CGImageRelease(imageRef);
     
+    [self printBuiltInFilter];
+    
+    
 }
+
+- (void) printBuiltInFilter
+{
+    NSArray *builtInFilties = [CIFilter filterNamesInCategory:kCICategoryBuiltIn];
+    for(NSString *filterName in builtInFilties)
+    {
+        CIFilter *oneFilter = [CIFilter filterWithName:filterName];
+        NSLog(@"filterName :%@",[oneFilter attributes]);
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -55,11 +70,25 @@
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     [filter setValue:@(value) forKey:@"inputIntensity"];
-    CIImage *outImage = [filter outputImage];
-    CGImageRef imageRef = [context createCGImage:outImage fromRect:[outImage extent]];
+//    CIImage *outImage = [filter outputImage];
+    CIFilter *moreFilter = [self oldPhoto:[filter outputImage] withAmount:value];
+    CIImage *outputImage = [moreFilter outputImage];
+    CGImageRef imageRef = [context createCGImage:outputImage fromRect:[outputImage extent]];
     UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+//    CGImageRef imageRef = [context createCGImage:outImage fromRect:[outImage extent]];
+//    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
     self.imageView.image = newImage;
     CGImageRelease(imageRef);
+}
+- (CIFilter*)oldPhoto:(CIImage*) oldImage withAmount:(CGFloat)intensity
+{
+    CIFilter *filter1 = [CIFilter filterWithName:@"CIDarkenBlendMode"];
+    [filter1 setValue:oldImage forKeyPath:kCIInputImageKey];
+    CIFilter *filter2 = [CIFilter filterWithName:@"CIColorControls"];
+    [filter2 setValue:@(1 - intensity) forKey:@"inputBrightness"];
+    [filter2 setValue:@0.0 forKey:@"inputSaturation"];
+    [filter2 setValue:[filter1 outputImage] forKey:kCIInputImageKey];
+    return filter2;
 }
 #pragma mark actions
 - (IBAction)loadPhoto:(id)sender
