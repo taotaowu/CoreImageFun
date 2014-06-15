@@ -70,13 +70,15 @@
     UISlider *slider = (UISlider*)sender;
     float value = slider.value;
     [filter setValue:@(value) forKey:@"inputIntensity"];
-//    CIImage *outImage = [filter outputImage];
-    CIFilter *moreFilter = [self oldPhoto:[filter outputImage] withAmount:value];
-    CIImage *outputImage = [moreFilter outputImage];
-    CGImageRef imageRef = [context createCGImage:outputImage fromRect:[outputImage extent]];
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-//    CGImageRef imageRef = [context createCGImage:outImage fromRect:[outImage extent]];
+    CIImage *outImage = [filter outputImage];
+    
+//    CIFilter *moreFilter = [self oldPhoto:[filter outputImage] withAmount:value];
+//    CIImage *outputImage = [moreFilter outputImage];
+//    CGImageRef imageRef = [context createCGImage:outputImage fromRect:[outputImage extent]];
 //    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    
+    CGImageRef imageRef = [context createCGImage:outImage fromRect:[outImage extent]];
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
     self.imageView.image = newImage;
     CGImageRelease(imageRef);
 }
