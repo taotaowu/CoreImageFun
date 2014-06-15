@@ -60,6 +60,29 @@
     self.imageView.image = newImage;
     CGImageRelease(imageRef);
 }
+
+- (IBAction)loadPhoto:(id)sender
+{
+    UIImagePickerController *imagePickControl = [[UIImagePickerController alloc] init];
+    imagePickControl.delegate = self;
+    [self presentViewController:imagePickControl animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage *pickerImage = [info objectForKeyedSubscript:UIImagePickerControllerOriginalImage];
+    beginImage = [CIImage imageWithCGImage:pickerImage.CGImage];
+    [filter setValue:beginImage forKeyPath:kCIInputImageKey];
+    [self amoutSliderValueChanged:self.amountSlider];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end
 
 

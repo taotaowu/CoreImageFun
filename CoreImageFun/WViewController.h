@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WViewController : UIViewController
+@interface WViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UISlider *amountSlider;
 - (IBAction)amoutSliderValueChanged:(id)sender;
+- (IBAction)loadPhoto:(id)sender;
 
 @end

@@ -18,16 +18,27 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="Xcv-2k-HCE">
-                                <rect key="frame" x="-2" y="446" width="324" height="31"/>
+                                <rect key="frame" x="-2" y="410" width="324" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="amoutSliderValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="Cbg-YR-5xD"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a4V-xB-yej">
+                                <rect key="frame" x="211" y="448" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Photo Album">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadPhoto:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="R10-hJ-W0c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="amountSlider" destination="Xcv-2k-HCE" id="6hM-vy-77O"/>
                         <outlet property="imageView" destination="HaH-yn-GUJ" id="XtG-Ex-QNo"/>
                     </connections>
                 </viewController>
