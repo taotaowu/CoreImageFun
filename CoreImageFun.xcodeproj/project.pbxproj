@@ -21,6 +21,7 @@
 		5E83C58F194D604B004E951C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E83C571194D604B004E951C /* UIKit.framework */; };
 		5E83C597194D604B004E951C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E83C595194D604B004E951C /* InfoPlist.strings */; };
 		5E83C599194D604B004E951C /* CoreImageFunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E83C598194D604B004E951C /* CoreImageFunTests.m */; };
+		5E83C5A3194D614F004E951C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E83C5A2194D614F004E951C /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		5E83C594194D604B004E951C /* CoreImageFunTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreImageFunTests-Info.plist"; sourceTree = "<group>"; };
 		5E83C596194D604B004E951C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5E83C598194D604B004E951C /* CoreImageFunTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreImageFunTests.m; sourceTree = "<group>"; };
+		5E83C5A2194D614F004E951C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E83C5A3194D614F004E951C /* CoreImage.framework in Frameworks */,
 				5E83C570194D604B004E951C /* CoreGraphics.framework in Frameworks */,
 				5E83C572194D604B004E951C /* UIKit.framework in Frameworks */,
 				5E83C56E194D604B004E951C /* Foundation.framework in Frameworks */,
@@ -101,6 +104,7 @@
 		5E83C56C194D604B004E951C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E83C5A2194D614F004E951C /* CoreImage.framework */,
 				5E83C56D194D604B004E951C /* Foundation.framework */,
 				5E83C56F194D604B004E951C /* CoreGraphics.framework */,
 				5E83C571194D604B004E951C /* UIKit.framework */,
@@ -380,6 +384,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreImageFun/CoreImageFun-Prefix.pch";
 				INFOPLIST_FILE = "CoreImageFun/CoreImageFun-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -393,6 +398,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreImageFun/CoreImageFun-Prefix.pch";
 				INFOPLIST_FILE = "CoreImageFun/CoreImageFun-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
