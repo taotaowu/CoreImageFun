@@ -10,5 +10,6 @@
 
 @interface WViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+- (IBAction)amoutSliderValueChanged:(id)sender;
 
 @end

@@ -13,6 +13,11 @@
 @end
 
 @implementation WViewController
+{
+    CIImage *beginImage;
+    CIFilter *filter;
+    CIContext *context;
+}
 
 - (void)viewDidLoad
 {
@@ -22,13 +27,19 @@
     NSURL *fileNameAndPath = [NSURL fileURLWithPath:filePath];
     //2
 //    CIImage *beginImage = [[CIImage alloc] initWithContentsOfURL:fileNameAndPath];
-    CIImage *beginImage = [CIImage imageWithContentsOfURL:fileNameAndPath];
+     beginImage = [CIImage imageWithContentsOfURL:fileNameAndPath];
     //3
-    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:kCIInputImageKey,beginImage ,@"inputIntensity",@0.8,nil];
+     filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:kCIInputImageKey,beginImage ,@"inputIntensity",@0.8,nil];
     CIImage *outImage = [filter outputImage];
+    //5
+    context = [CIContext contextWithOptions:nil];
+    CGImageRef imageRef = [context createCGImage:outImage fromRect:[outImage extent]];
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    
     //4
-    UIImage *newImage = [UIImage imageWithCIImage:outImage];
+//    UIImage *newImage = [UIImage imageWithCIImage:outImage];
     self.imageView.image = newImage;
+    CGImageRelease(imageRef);
     
 }
 
@@ -38,4 +49,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)amoutSliderValueChanged:(id)sender
+{
+    UISlider *slider = (UISlider*)sender;
+    float value = slider.value;
+    [filter setValue:@(value) forKey:@"inputIntensity"];
+    CIImage *outImage = [filter outputImage];
+    CGImageRef imageRef = [context createCGImage:outImage fromRect:[outImage extent]];
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    self.imageView.image = newImage;
+    CGImageRelease(imageRef);
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
