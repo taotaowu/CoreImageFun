@@ -17,7 +17,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    //1
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"png"];
+    NSURL *fileNameAndPath = [NSURL fileURLWithPath:filePath];
+    //2
+//    CIImage *beginImage = [[CIImage alloc] initWithContentsOfURL:fileNameAndPath];
+    CIImage *beginImage = [CIImage imageWithContentsOfURL:fileNameAndPath];
+    //3
+    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:kCIInputImageKey,beginImage ,@"inputIntensity",@0.8,nil];
+    CIImage *outImage = [filter outputImage];
+    //4
+    UIImage *newImage = [UIImage imageWithCIImage:outImage];
+    self.imageView.image = newImage;
+    
 }
 
 - (void)didReceiveMemoryWarning
